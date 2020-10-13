@@ -24,7 +24,32 @@ PARSING_SCHEME = {
     'shooting_percentage': 'td[data-stat="shot_pct"]:first',
     'shots_against': 'td[data-stat="shots_against"]:first',
     'save_percentage': 'td[data-stat="save_pct"]:first',
-    'pdo_at_even_strength': 'td[data-stat="pdo"]:first'
+    'pdo_at_even_strength': 'td[data-stat="pdo"]:first',
+    'shooting_percentage_5on5': 'td[data-stat="shot_pct_5on5"]:first',
+    'save_percentage_5on5': 'td[data-stat="sv_pct_5on5"]:first',
+    'pdo': 'td[data-stat="pdf"]:first',
+    'corsi_for_5on5': 'td[data-stat="corsi_for_5on5"]:first',
+    'corsi_against_5on5': 'td[data-stat="corsi_agains_5on5"]:first',
+    'corsi_percentage_5on5': 'td[data-stat="corsi_pct_5on5"]:first',
+    'fenwick_for_5on5': 'td[data-stat="fenwick_for_5on5"]:first',
+    'fenwick_against_5on5': 'td[data-stat="fenwick_agains_5on5"]:first',
+    'fenwick_percentage_5on5': 'td[data-stat="fenwick_pct_5on5"]:first',
+    'expected_goals_for': 'td[data-stat="exp_on_goals_for"]:first',
+    'actual_goals_for': 'td[data-stat="actual_goals"]:first',
+    'actual_goals_against': 'td[data-stat="actual_goals_against"]:first',
+    'actual_vs_expected_goals_diff': 'td[data-stat="actual_expected_diff"]:first',
+    'scoring_chances_for': 'td[data-stat="sc_for"]:first',
+    'scoring_chances_against': 'td[data-stat="sc_against"]:first',
+    'scoring_chances_for_percentage': 'td[data-stat="sc_for_pct"]:first',
+    'high_danger_scoring_chances_for': 'td[data-stat="hdsc_for"]:first',
+    'high_danger_scoring_chances_against': 'td[data-stat="hcsc_against"]:first',
+    'high_danger_scoring_chances_for_percentage': 'td[data-stat="hdsc_for_pct"]:first',
+    'goals_from_hdsc': 'td[data-stat="hdscgoal_for"]:first',
+    'goals_from_hdsc_percentage': 'td[data-stat="hdsc_shot_pct"]:first',
+    'goals_from_hdsc_against': 'td[data-stat="hdscgoal_against"]:first',
+    'goals_from_hdsc_against_percentage': 'td[data-stat="hdsc_opp_shot_pct"]:first',
+
+
 }
 
 SCHEDULE_SCHEME = {

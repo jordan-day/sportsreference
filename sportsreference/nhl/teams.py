@@ -1,6 +1,6 @@
 import pandas as pd
 import re
-from .constants import PARSING_SCHEME, SEASON_PAGE_URL
+from .constants import PARSING_SCHEME
 from ..decorators import float_property_decorator, int_property_decorator
 from .. import utils
 from .nhl_utils import _retrieve_all_teams
@@ -21,8 +21,8 @@ class Team:
 
     Parameters
     ----------
-    team_name : string (optional)
-        The name of the team to pull if being called directly.
+    team_abbreviation : string (optional)
+        The abbreviation of the team to pull if being called directly.
     team_data : string (optional)
         A string containing all of the rows of stats for a given team. If
         multiple tables are being referenced, this will be comprised of
@@ -36,7 +36,7 @@ class Team:
         The requested year to pull stats from. Is only used when called
         directly from the Teams class.
     """
-    def __init__(self, team_name=None, team_data=None, rank=None, year=None):
+    def __init__(self, team_abbreviation=None, team_data=None, rank=None, year=None):
         self._year = year
         self._rank = rank
         self._abbreviation = None
@@ -66,9 +66,10 @@ class Team:
         self._shots_against = None
         self._save_percentage = None
         self._pdo_at_even_strength = None
+        self._corsi_for_5on5 = None
 
-        if team_name:
-            team_data = self._retrieve_team_data(year, team_name)
+        if team_abbreviation:
+            team_data = self._retrieve_team_data(year, team_abbreviation)
         self._parse_team_data(team_data)
 
     def __str__(self):
@@ -439,10 +440,9 @@ class Teams:
     year : string (optional)
         The requested year to pull stats from.
     """
-    def __init__(self, year=None):
+    def __init__(self, year=None, include_analytics=False):
         self._teams = []
-
-        teams_list, year = _retrieve_all_teams(year)
+        teams_list, year = _retrieve_all_teams(year, include_analytics)
         self._instantiate_teams(teams_list, year)
 
     def __getitem__(self, abbreviation):

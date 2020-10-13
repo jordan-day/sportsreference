@@ -3,7 +3,7 @@ from sportsreference import utils
 from .constants import SEASON_PAGE_URL
 
 
-def _retrieve_all_teams(year):
+def _retrieve_all_teams(year, include_analytics=False):
     """
     Find and create Team instances for all teams in the given season.
 
@@ -24,8 +24,8 @@ def _retrieve_all_teams(year):
     -------
     tuple
         Returns a ``tuple`` in the format of (teams_list, year) where the
-        teams_list is the PyQuery data for every team in the given season, and
-        the year is the request year for the season.
+        teams_list is a generator to the PyQuery data for every team 
+        in the given season, and the year is the requested year for the season.
     """
     if not year:
         year = utils._find_year_for_season('nhl')
@@ -37,6 +37,9 @@ def _retrieve_all_teams(year):
             year = str(int(year) - 1)
     doc = pq(SEASON_PAGE_URL % year)
     teams_list = utils._get_stats_table(doc, 'div#all_stats')
+    if(include_analytics):
+        teams_analytics = utils._get_stats_table(doc, 'div#all_stats_adv')
+        teams_list = (a+b for a,b in zip(teams_list, teams_analytics))
     if not teams_list:
         utils._no_data_found()
         return None, None
